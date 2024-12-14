@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.greetingsapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         TextView greeting = findViewById(R.id.greetingMessage);
         EditText nameInput = findViewById(R.id.nameInput);
         Button greetButton = findViewById(R.id.greetButton);
+        ImageView smileEmoji = findViewById(R.id.smileEmoji);
 
+        smileEmoji.setVisibility(View.GONE);
         greetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
                 if(!name.isEmpty()){
                     greeting.setText("Hello, " + name + "!");
 
+                    if (name.contains("happy") || name.contains("joyful") || name.contains("excited")) {
+                        smileEmoji.setImageResource(R.drawable.smile_emoji);
+                        smileEmoji.setVisibility(View.VISIBLE);
+                    }
+
                 } else {
                     greeting.setText("Please enter your name.");
                 }
@@ -49,3 +59,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
